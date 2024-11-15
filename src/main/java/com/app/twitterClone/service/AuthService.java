@@ -62,6 +62,11 @@ public class AuthService {
                 .email(user.getEmail())
                 .build();
 
+        if (userRepository.existsByUsername(user.getUsername())) {
+            throw new IllegalArgumentException("Ya existe ese usuario");
+        }
+
+
         return userRepository.save(userSave);
     }
 }

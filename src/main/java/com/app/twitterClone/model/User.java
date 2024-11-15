@@ -1,9 +1,7 @@
 package com.app.twitterClone.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -41,6 +39,10 @@ public class User implements UserDetails {
     @Column(length = 50,unique = true)
     @Email(message = "Debe ser un correo valido")
     private String email;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "users",cascade = CascadeType.ALL)
+    private List<Tweet> tweets;
 
 
     @Override
