@@ -11,6 +11,6 @@ import java.util.List;
 public interface TweetRepository extends JpaRepository<Tweet, Long> {
 
     @Query("SELECT new com.app.twitterClone.model.dto.TweetDTO(t.id,t.tweet, t.userId)" +
-            "FROM Tweet t WHERE t.userId = :username")
+            "FROM Tweet t WHERE t.userId = :username ORDER BY t.fecha DESC")
     List<TweetDTO> listarTweets(@Param("username") String username);
 }
