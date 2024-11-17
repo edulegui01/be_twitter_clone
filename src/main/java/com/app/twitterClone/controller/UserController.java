@@ -28,14 +28,14 @@ public class UserController {
         return ResponseEntity.ok(count);
     }
 
-    @GetMapping("/{username}/followers")
-    public ResponseEntity<List<User>> getFollowers(@PathVariable String username) {
+    @GetMapping("/followers")
+    public ResponseEntity<List<User>> getFollowers(@RequestParam String username) {
         List<User> followers = followerService.getFollowers(username);
         return ResponseEntity.ok(followers);
     }
 
-    @GetMapping("/{username}/following")
-    public ResponseEntity<List<User>> getFollowing(@PathVariable String username) {
+    @GetMapping("/following")
+    public ResponseEntity<List<User>> getFollowing(@RequestParam String username) {
         List<User> following = followerService.getFollowing(username);
         return ResponseEntity.ok(following);
     }
